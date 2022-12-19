@@ -1,6 +1,22 @@
 doctrine:
     dbal:
         url: '%env(resolve:DATABASE_URL)%'
+        types:
+            geometry:   CrEOF\Spatial\DBAL\Types\GeometryType
+            point:      CrEOF\Spatial\DBAL\Types\Geometry\PointType
+            polygon:    CrEOF\Spatial\DBAL\Types\Geometry\PolygonType
+            linestring: CrEOF\Spatial\DBAL\Types\Geometry\LineStringType
+            geometry_linestring: CrEOF\Spatial\DBAL\Types\Geometry\LineStringType
+            geometry_point:      CrEOF\Spatial\DBAL\Types\Geometry\PointType
+            geometry_polygon:    CrEOF\Spatial\DBAL\Types\Geometry\PolygonType
+            geometry_multilinestring: CrEOF\Spatial\DBAL\Types\Geometry\MultiLineStringType
+            geometry_multipoint:      CrEOF\Spatial\DBAL\Types\Geometry\MultiPointType
+            geometry_multipolygon:    CrEOF\Spatial\DBAL\Types\Geometry\MultiPolygonType
+            geometry_collection:    CrEOF\Spatial\DBAL\Types\Geometry\GeometryCollectionType
+            geography:            CrEOF\Spatial\DBAL\Types\GeographyType
+            geography_linestring: CrEOF\Spatial\DBAL\Types\Geography\LineStringType
+            geography_point:      CrEOF\Spatial\DBAL\Types\Geography\PointType
+            geography_polygon:    CrEOF\Spatial\DBAL\Types\Geography\PolygonType
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
