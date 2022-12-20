@@ -83,6 +83,13 @@ class Emp
         return $this->empno;
     }
 
+    public function setEmpno(int $empno): ?self
+    {
+        $this->empno = $empno;
+
+        return $this;
+    }
+
     public function getEname(): ?string
     {
         return $this->ename;

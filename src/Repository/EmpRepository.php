@@ -32,7 +32,7 @@ class EmpRepository extends ServiceEntityRepository
 
     $conn = $this->getEntityManager()->getConnection();
 
-    $sql = 'SELECT a.EMPNO, a.ENAME, a.JOB, c.ENAME as MGR, a.HIREDATE, a.SAL, a.COMM, b.DNAME 
+    $sql = 'SELECT a.EMPNO, a.ENAME, a.JOB, c.ENAME as MGR, c.EMPNO as MGRNO, a.HIREDATE, a.SAL, a.COMM, a.DEPTNO, b.DNAME
             FROM emp as a
             LEFT JOIN dept as b
             ON b.DEPTNO = a.DEPTNO
@@ -42,8 +42,9 @@ class EmpRepository extends ServiceEntityRepository
 
     $sql2 = $sql;
     if($value){
-        $sql2 = $sql . " AND a.$field = '$value'";
+        $sql2 = $sql . " AND (a.$field = '$value' " . ($value === 'manager' ? "OR a.$field = 'PRESIDENT'" : "") .")";
     }
+
         $stmt = $conn->prepare($sql2);
         $resultSet = $stmt->executeQuery();
 
