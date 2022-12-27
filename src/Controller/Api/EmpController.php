@@ -84,4 +84,20 @@ class EmpController extends AbstractController
         ], 200);
     }
 
+    #[Route('/employee/delete/{id}', name: 'app_delete_emp', methods: ['POST'])]
+    public function deleteEmployee($id, Request $request, EntityManagerInterface $em): JsonResponse
+    {
+
+        $data = json_decode($request->getContent());
+
+        $employee = $em->getRepository(Emp::Class)->find($id);
+
+        $em->remove($employee);
+        $em->flush();
+
+        return new JsonResponse([
+            'error' => false
+        ], 200);
+    }
+
 }
